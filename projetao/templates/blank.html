@@ -109,18 +109,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Blank Page</h4>
+                  
 
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                   <h1> meus restaurantes </h1>
-                   <script type="text/javascript"></script>
-
-
+  
+        <div class="row">
+                <div class="col-md-6">
+                  <!--   Kitchen Sink -->
+                    <div class="panel panel-default">
+                     <div class="alert alert-success">
+                       Key do restaurante
+                    </div>
+                     <div id="pedidos" class="list-group">
+                      <input type="text" id="keyRes" >
+                      <button type='button' onclick="teste()"  >Enviar</button>
+                      </div>
+                    </div>     
                 </div>
+            </div>    
+           
+            <script>
+
+            function teste()
+            {
+                var keyRes =  document.getElementById("keyRes").value;
+                listarPedidos(keyRes);
+            }
+            
+            </script>
+
+
 
             </div>
         </div>
@@ -142,5 +162,51 @@
     <script src="assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        
+            String.prototype.format = function() {
+                        var formatted = this;
+                        for( var arg in arguments ) {
+                            formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+                        }
+                        return formatted;
+                    };
+
+            function InsertNotificacao(dado,key)
+            {
+               
+                var template = "<a href='#' class='list-group-item list-group-item-action'>" +
+                                "<h5 class='list-group-item-heading'>{0}</h5>" +
+                                "<p class='list-group-item-text'>{1}</p>" +
+                                "<input class='idpedido' type='hidden' value='{2}'/>" +
+                                "<button type='button' class='btn btn-success'>Aceitar</button>" +
+                                "<button type='button' class='btn btn-danger'>Recusar</button>" +
+                            "</a>"; 
+
+                var novo = template.format(dado.tempo,dado.estado,key);
+
+                $("#pedidos").append(novo);
+
+                $("#pedidos button.btn-success").click(function(){
+    
+                    confirmarEstado($(this).parent().parent().find(".idpedido").val());
+
+                });
+
+                $("#pedidos button.btn-danger").click(function(){
+                    alert("Recusar " + $(this).parent().parent().find(".idpedido").val());
+                });
+            }
+        
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <script src="banco.js"></script>
+
+    <script type="text/javascript">
+       
+        console.log(getIdUser());
+    </script>
+
 </body>
 </html>

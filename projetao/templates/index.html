@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -34,6 +34,10 @@
         </div>
     </header>
     <!-- HEADER END-->
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <script src="banco.js"></script>
+
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
@@ -50,6 +54,8 @@
             </div>
 
             <div class="left-div">
+              
+
                 <div class="user-settings-wrapper">
                     <ul class="nav">
 
@@ -72,7 +78,7 @@
                                 <h5><strong>Personal Bio : </strong></h5>
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="/login" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="/login" onclick="log()"  class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
                         </li>
@@ -115,6 +121,38 @@
                 </div>
 
             </div>
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                      Meus restaurantes
+                    </div>
+                </div>
+
+        <div id="restaurantes" class="list-group-item" >
+        </div>
+
+    <script type="text/javascript"> 
+
+            
+            String.prototype.format = function() {
+                        var formatted = this;
+                        for( var arg in arguments ) {
+                            formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+                        }
+                        return formatted;
+                    };
+
+             function inserirRestaurantes(dado,key)
+                {
+                    var template = "<p href='#' >" +
+                                    "<h5 class='list-group-item-heading'>{0}</h5>" +
+                                    "<p class='list-group-item-text'>{1}</p>" +
+                                "</p>"; 
+                    var novo = template.format(dado.nome,key);
+                    $("#restaurantes").append(novo);
+                }
+                    </script>
+
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-success">
@@ -126,12 +164,12 @@
             <div class="row">
                  <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-one">
-                        <i  class="fa fa-venus dashboard-div-icon" ></i>
+                        <i  class="fa fa-facebook-official dashboard-div-icon" ></i>
                         <div class="progress progress-striped active">
   <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
   </div>
                            
-</div>
+</div>  
                          <h5>Clientes</h5>
                     </div>
                 </div>
@@ -165,7 +203,7 @@
   </div>
                            
 </div>
-                         <h5>Alertas do restaurante </h5>
+                         <h5>Alertas do restaurantes </h5>
                     </div>
                 </div>
 
